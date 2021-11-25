@@ -12,6 +12,7 @@ jobs:
       - name: 'Start build job'
         run: |
           echo "Starting the build job"
+
       - name: 'Checkout'
         uses: actions/checkout@v2
 
@@ -33,6 +34,7 @@ jobs:
         run: |
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/hello-react .
           docker push ${{ secrets.DOCKERHUB_USERNAME}}/hello-react
+
       - name: 'Write config'
         run: |
           mkdir ~/.oci
@@ -44,6 +46,7 @@ jobs:
           echo "key_file=~/.oci/oci_api_key.pem" >> ~/.oci/config
           echo "${{secrets.OCI_KEY_FILE}}" >> ~/.oci/oci_api_key.pem
           echo "${{secrets.OCI_KEY_PUBLIC}}" >> ~/.oci/oci_api_key_public.pem
+
       - name: 'Install OCI CLI'
         run: |
           curl -L -O https://raw.githubusercontent.com/oracle/oci-cli/master/scripts/install/install.sh
@@ -51,10 +54,12 @@ jobs:
           ./install.sh --accept-all-defaults
           echo "/home/runner/bin" >> $GITHUB_PATH
           exec -l $SHELL
+
       - name: 'Fix Config File Permissions'
         run: |
           oci setup repair-file-permissions --file /home/runner/.oci/config
           oci setup repair-file-permissions --file /home/runner/.oci/oci_api_key.pem
+
       - name: 'Check Existing Instance'
         run: |
           echo "INSTANCE_OCID=$( \
@@ -65,6 +70,7 @@ jobs:
             --query "data [0].id" \
             --raw-output \
             )" >> $GITHUB_ENV
+
       - name: 'Create Instance'
         if: ${{!env.INSTANCE_OCID}}
         run: |
@@ -98,6 +104,7 @@ jobs:
           sleep 5
           echo "SSH not available..."
           done; echo "SSH ready!"
+
       - name: 'Deploy Deployment Configuration'
         uses: appleboy/scp-action@master
         with:
