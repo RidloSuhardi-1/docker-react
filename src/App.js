@@ -12,7 +12,7 @@ function App() {
 }
 
 export default App;
-this.setState({});
+this.setState({})
 
 // function App() {
 //   return (
