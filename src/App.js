@@ -1,20 +1,23 @@
-// import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter, Route } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import "./App.css";
 import { TodoList } from "./TodoList";
-import { TodoItem } from './TodoItem'
+import { TodoItem } from "./TodoItem";
 
 function App() {
-  this.setState({});
   return (
     <div className="App">
       <header className="App-header">
         <h2>Getting started with React testing library</h2>
       </header>
+
       <div className="App-body">
         <BrowserRouter>
-          <Route path="/item/:id" component={TodoItem} />
-          <Route exact path="/" component={TodoList} />
+          <Routes>  
+              <Route path="/item/:id" component={TodoItem} />
+              <Route exact path="/" component={TodoList} />
+          </Routes>
         </BrowserRouter>
       </div>
     </div>
@@ -22,24 +25,3 @@ function App() {
 }
 
 export default App;
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
