@@ -2,6 +2,7 @@
 import './App.css';
 
 function App() {
+  this.setState({});
   return (
     <div className="App">
       <header className="App-header">
@@ -12,7 +13,6 @@ function App() {
 }
 
 export default App;
-this.setState({})
 
 // function App() {
 //   return (
